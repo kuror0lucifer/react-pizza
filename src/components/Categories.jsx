@@ -12,17 +12,13 @@ export default function Categories() {
 
   const [activeIndex, setActiveIndex] = React.useState(0);
 
-  const onClickCategory = (index) => {
-    setActiveIndex(index);
-  };
-
   return (
     <div className="categories">
       <ul>
         {categories.map((value, index) => {
           return (
             <li
-              onClick={() => onClickCategory(index)}
+              onClick={() => setActiveIndex(index)}
               key={index}
               className={activeIndex === index ? "active" : ""}
             >
