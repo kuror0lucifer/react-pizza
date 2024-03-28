@@ -5,7 +5,7 @@ function Header() {
     <div className="header">
     <div className="container">
       <div className="header__logo">
-        <img width="38" src="./img/pizza-logo.svg" alt="Pizza logo" />
+        <img width="50" src="https://cdn.iconscout.com/icon/free/png-256/free-pizza-slice-3239197-2699429.png" alt="Pizza logo" />
         <div>
           <h1>React Pizza</h1>
           <p>самая вкусная пицца во вселенной</p>
