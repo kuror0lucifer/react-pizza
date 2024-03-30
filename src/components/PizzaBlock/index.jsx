@@ -55,7 +55,7 @@ export default function PizzaBlock({ title, price, imageUrl, sizes, types }) {
               />
             </svg>
             <span>Добавить</span>
-            <i>2</i>
+            <i>0</i>
           </button>
         </div>
       </div>
