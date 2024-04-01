@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "./Search.module.scss";
 
-export default function Search() {
+export default function Search({ searchValue, setSearchValue }) {
   return (
     <div className={styles.root}>
       <svg
@@ -18,7 +18,23 @@ export default function Search() {
           id="XMLID_223_"
         />
       </svg>
-      <input className={styles.input} placeholder="Поиск пицц..." />
+      <input
+        value={searchValue}
+        onChange={(event) => setSearchValue(event.target.value)}
+        className={styles.input}
+        placeholder="Поиск пиццы..."
+      />
+      {searchValue && (
+        <svg
+          onClick={() => setSearchValue("")}
+          className={styles.clearIcon}
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 48 48"
+        >
+          <path d="M38 12.83l-2.83-2.83-11.17 11.17-11.17-11.17-2.83 2.83 11.17 11.17-11.17 11.17 2.83 2.83 11.17-11.17 11.17 11.17 2.83-2.83-11.17-11.17z" />
+          <path d="M0 0h48v48h-48z" fill="none" />
+        </svg>
+      )}
     </div>
   );
 }
