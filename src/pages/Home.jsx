@@ -6,6 +6,7 @@ import PizzaBlock from "../components/PizzaBlock";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 import Pagination from "../components/Pagination/index";
 import { SearchContext } from "../App";
+import EmptySearch from "./EmptySearch";
 
 export default function Home() {
   const { searchValue } = React.useContext(SearchContext);
@@ -63,7 +64,7 @@ export default function Home() {
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">{isLoading ? skeletons : pizzas}</div>
-
+      {items.length === 0 ? <EmptySearch /> : ""}
       <Pagination onChangePage={(number) => setCurrentPage(number)} />
     </div>
   );
