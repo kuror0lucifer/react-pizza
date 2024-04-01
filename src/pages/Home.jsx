@@ -5,8 +5,11 @@ import Sort from "../components/Sort";
 import PizzaBlock from "../components/PizzaBlock";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 import Pagination from "../components/Pagination/index";
+import { SearchContext } from "../App";
 
-export default function Home({ searchValue }) {
+export default function Home() {
+  const { searchValue } = React.useContext(SearchContext);
+
   const [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [categoryId, setCategoryId] = React.useState(0);
@@ -25,12 +28,17 @@ export default function Home({ searchValue }) {
     const search = searchValue ? `&search=${searchValue}` : "";
 
     fetch(
-      `https://66071801be53febb857f2531.mockapi.io/items?page=${currentPage}&limit=4${category}&sortBy=${sortBy}&order=${order}${search}`
+      `https://66071801be53febb857f2531.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
     )
       .then((res) => res.json())
       .then((arr) => {
-        setItems(arr);
-        setIsLoading(false);
+        if (typeof arr === "string") {
+          setItems([]);
+          setIsLoading(false);
+        } else {
+          setItems(arr);
+          setIsLoading(false);
+        }
       });
     window.scrollTo(0, 0);
   }, [categoryId, sortType, searchValue, currentPage]);
@@ -55,6 +63,7 @@ export default function Home({ searchValue }) {
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">{isLoading ? skeletons : pizzas}</div>
+
       <Pagination onChangePage={(number) => setCurrentPage(number)} />
     </div>
   );
