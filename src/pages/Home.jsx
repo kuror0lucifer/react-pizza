@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import qs from "qs";
 import { useSelector, useDispatch } from "react-redux";
@@ -38,7 +39,7 @@ export default function Home() {
     dispatch(setCurrentPage(number));
   };
 
-  const fetchPizzas = () => {
+  const fetchPizzas = async () => {
     setIsLoading(true);
 
     const sortBy = sort.sortProperty.replace("-", "");
@@ -46,20 +47,33 @@ export default function Home() {
     const category = categoryId > 0 ? `category=${categoryId}` : "";
     const search = searchValue ? `&search=${searchValue}` : "";
 
-    axios
-      .get(
+    // await axios
+    //   .get(
+    //     `https://66071801be53febb857f2531.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
+    //   )
+    //   .then((res) => {
+    //     setItems(res.data);
+    //     setIsLoading(false);
+    //   })
+    //   .catch((error) => {
+    //     if (error.response || error.requst) {
+    //       setItems([]);
+    //       setIsLoading(false);
+    //     }
+    //   });
+
+    try {
+      const res = await axios.get(
         `https://66071801be53febb857f2531.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
-      )
-      .then((res) => {
-        setItems(res.data);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        if (error.response || error.requst) {
-          setItems([]);
-          setIsLoading(false);
-        }
-      });
+      );
+      setItems(res.data);
+    } catch (error) {
+      setIsLoading(false);
+      console.log("ERROR", error);
+      alert("Ошибка получения пицц");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   // Если изменили параметры и был первый рендер
@@ -107,13 +121,13 @@ export default function Home() {
   ));
 
   return (
-    <div className="container">
-      <div className="content__top">
+    <div className='container'>
+      <div className='content__top'>
         <Categories value={categoryId} onClickCategory={onChangeCategory} />
         <Sort />
       </div>
-      <h2 className="content__title">Все пиццы</h2>
-      <div className="content__items">{isLoading ? skeletons : pizzas}</div>
+      <h2 className='content__title'>Все пиццы</h2>
+      <div className='content__items'>{isLoading ? skeletons : pizzas}</div>
       {items.length === 0 ? <EmptySearch /> : ""}
       <Pagination currentPage={currentPage} onChangePage={onChangePage} />
     </div>
