@@ -1,7 +1,9 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { addItem, selectCartItemById } from "../../redux/slices/cartSlice";
+import { selectPizzaData } from "../../redux/slices/pizzaSlice";
 
 const typeName = ["тонкое", "традиционное"];
 
@@ -17,6 +19,8 @@ export default function PizzaBlock({
   const cartItem = useSelector(selectCartItemById(id));
   const [activeSize, setActiveSize] = React.useState(0);
   const [activeType, setActiveType] = React.useState(0);
+
+  const { items } = useSelector(selectPizzaData);
 
   const addedCount = cartItem ? cartItem.count : 0;
 
@@ -35,8 +39,11 @@ export default function PizzaBlock({
   return (
     <div className='pizza-block-wrapper'>
       <div className='pizza-block'>
-        <img className='pizza-block__image' src={imageUrl} alt='Pizza' />
-        <h4 className='pizza-block__title'>{title}</h4>
+        <Link to={`/pizza/${id}`}>
+          <img className='pizza-block__image' src={imageUrl} alt='Pizza' />
+          <h4 className='pizza-block__title'>{title}</h4>
+        </Link>
+
         <div className='pizza-block__selector'>
           <ul>
             {types.map((typeId, i) => {
