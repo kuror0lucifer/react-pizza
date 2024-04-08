@@ -1,6 +1,6 @@
 import React from "react";
 import EmptySearchBlock from "../components/EmptySearchBlock";
 
-export default function EmptySearch() {
-  return <EmptySearchBlock />;
-}
+const EmptySearch: React.FC = () => <EmptySearchBlock />;
+
+export default EmptySearch;

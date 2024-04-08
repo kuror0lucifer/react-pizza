@@ -1,8 +1,7 @@
 import React from "react";
 
 import styles from "./EmptySearchBlock.module.scss";
-
-export default function EmptySearchBlock() {
+const EmptySearchBlock: React.FC = () => {
   return (
     <div className={styles.root}>
       <p>
@@ -12,4 +11,6 @@ export default function EmptySearchBlock() {
       </p>
     </div>
   );
-}
+};
+
+export default EmptySearchBlock;

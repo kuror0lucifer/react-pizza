@@ -6,7 +6,7 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import FullPizza from "./pages/FullPizza";
 import Cart from "./pages/Cart";
-import MainLayout from "./ layouts/MainLayout.jsx";
+import MainLayout from "./ layouts/MainLayout";
 
 function App() {
   return (
