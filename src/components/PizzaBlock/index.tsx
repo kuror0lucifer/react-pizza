@@ -1,11 +1,15 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-import { addItem, selectCartItemById } from "../../redux/slices/cartSlice";
-import { selectPizzaData } from "../../redux/slices/pizzaSlice";
+import {
+  addItem,
+  CartItem,
+  selectCartItemById,
+} from '../../redux/slices/cartSlice';
+import { selectPizzaData } from '../../redux/slices/pizzaSlice';
 
-const typeName = ["тонкое", "традиционное"];
+const typeName = ['тонкое', 'традиционное'];
 
 type PizzaBlockProps = {
   id: string;
@@ -34,13 +38,14 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
   const addedCount = cartItem ? cartItem.count : 0;
 
   const onClickAdd = () => {
-    const item = {
+    const item: CartItem = {
       id,
       title,
       price,
       imageUrl,
       type: typeName[activeType],
       size: sizes[activeSize],
+      count: 0,
     };
     dispatch(addItem(item));
   };
@@ -59,7 +64,7 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
               return (
                 <li
                   onClick={() => setActiveType(typeId)}
-                  className={activeType === typeId ? "active" : ""}
+                  className={activeType === typeId ? 'active' : ''}
                   key={i}
                 >
                   {typeName[typeId]}
@@ -72,7 +77,7 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
               return (
                 <li
                   onClick={() => setActiveSize(i)}
-                  className={activeSize === i ? "active" : ""}
+                  className={activeSize === i ? 'active' : ''}
                   key={i}
                 >
                   {size} см
