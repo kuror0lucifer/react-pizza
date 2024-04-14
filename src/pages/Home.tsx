@@ -1,25 +1,24 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React from "react";
-import qs from "qs";
-import { useSelector, useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import React from 'react';
+import qs from 'qs';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import {
   selectFilter,
   setCategoryId,
   setCurrentPage,
   setFilters,
-} from "../redux/slices/filterSlice";
-import { fetchPizzas, selectPizzaData } from "../redux/slices/pizzaSlice";
+} from '../redux/slices/filterSlice';
+import { fetchPizzas, selectPizzaData } from '../redux/slices/pizzaSlice';
 
-import Categories from "../components/Categories";
-import Sort, { list } from "../components/Sort";
-import PizzaBlock from "../components/PizzaBlock";
-import Skeleton from "../components/PizzaBlock/Skeleton";
-import Pagination from "../components/Pagination/index";
+import Categories from '../components/Categories';
+import Sort, { list } from '../components/Sort';
+import PizzaBlock from '../components/PizzaBlock';
+import Skeleton from '../components/PizzaBlock/Skeleton';
+import Pagination from '../components/Pagination/index';
 
-import EmptySearch from "./EmptySearch";
-import { current } from "@reduxjs/toolkit";
+import EmptySearch from './EmptySearch';
 
 const Home: React.FC = () => {
   const { categoryId, sort, currentPage, searchValue } =
@@ -39,10 +38,10 @@ const Home: React.FC = () => {
   };
 
   const getPizzas = async () => {
-    const sortBy = sort.sortProperty.replace("-", "");
-    const order = sort.sortProperty.includes("-") ? "asc" : "desc";
-    const category = categoryId > 0 ? `category=${categoryId}` : "";
-    const search = searchValue ? `&search=${searchValue}` : "";
+    const sortBy = sort.sortProperty.replace('-', '');
+    const order = sort.sortProperty.includes('-') ? 'asc' : 'desc';
+    const category = categoryId > 0 ? `category=${categoryId}` : '';
+    const search = searchValue ? `&search=${searchValue}` : '';
 
     dispatch(
       // @ts-ignore
@@ -77,7 +76,7 @@ const Home: React.FC = () => {
     if (window.location.search) {
       const params = qs.parse(window.location.search.substring(1));
 
-      const sort = list.find((obj) => obj.sortProperty === params.sortProperty);
+      const sort = list.find(obj => obj.sortProperty === params.sortProperty);
 
       dispatch(setFilters({ ...params, sort }));
       isSearch.current = true;
@@ -103,19 +102,19 @@ const Home: React.FC = () => {
   return (
     <div className='container'>
       <div className='content__top'>
-        <Categories value={categoryId} onClickCategory={onChangeCategory} />
+        <Categories value={categoryId} onChangeCategory={onChangeCategory} />
         <Sort />
       </div>
       <h2 className='content__title'>Все пиццы</h2>
-      {status === "error" ? (
+      {status === 'error' ? (
         items.length === 0 ? (
           <EmptySearch />
         ) : (
-          ""
+          ''
         )
       ) : (
         <div className='content__items'>
-          {status === "loading" ? skeletons : pizzas}
+          {status === 'loading' ? skeletons : pizzas}
         </div>
       )}
 

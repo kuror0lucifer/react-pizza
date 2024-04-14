@@ -1,6 +1,6 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { selectSort, setSort } from "../redux/slices/filterSlice";
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectSort, setSort } from '../redux/slices/filterSlice';
 
 type SortItem = {
   name: string;
@@ -8,12 +8,12 @@ type SortItem = {
 };
 
 export const list: SortItem[] = [
-  { name: "популярности (более популярные)", sortProperty: "rating" },
-  { name: "популярности (менее популярные)", sortProperty: "-rating" },
-  { name: "цене (сначала дороже)", sortProperty: "price" },
-  { name: "цене (сначала дешевле)", sortProperty: "-price" },
-  { name: "алфавиту (я-а)", sortProperty: "title" },
-  { name: "алфавиту (а-я)", sortProperty: "-title" },
+  { name: 'популярности (более популярные)', sortProperty: 'rating' },
+  { name: 'популярности (менее популярные)', sortProperty: '-rating' },
+  { name: 'цене (сначала дороже)', sortProperty: 'price' },
+  { name: 'цене (сначала дешевле)', sortProperty: '-price' },
+  { name: 'алфавиту (я-а)', sortProperty: 'title' },
+  { name: 'алфавиту (а-я)', sortProperty: '-title' },
 ];
 
 export default function Sort() {
@@ -29,14 +29,14 @@ export default function Sort() {
   };
 
   React.useEffect(() => {
-    const handleClickOutside = (event: any) => {
-      if (!event.composedPath().includes(sortRef.current)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (sortRef.current && !event.composedPath().includes(sortRef.current)) {
         setOpen(false);
       }
     };
-    document.body.addEventListener("click", handleClickOutside);
+    document.body.addEventListener('click', handleClickOutside);
 
-    return () => document.body.removeEventListener("click", handleClickOutside);
+    return () => document.body.removeEventListener('click', handleClickOutside);
   }, []);
 
   return (
@@ -71,7 +71,7 @@ export default function Sort() {
                 <li
                   onClick={() => onClickListItem(obj)}
                   className={
-                    sort.sortProperty === obj.sortProperty ? "active" : ""
+                    sort.sortProperty === obj.sortProperty ? 'active' : ''
                   }
                   key={i}
                 >
