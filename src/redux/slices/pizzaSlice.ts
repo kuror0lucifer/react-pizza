@@ -64,12 +64,10 @@ const pizzaSlice = createSlice({
         state.items = [];
       })
       .addCase(fetchPizzas.fulfilled, (state, action) => {
-        console.log(action, 'fulfilled');
         state.items = action.payload;
         state.status = Status.SUCCESS;
       })
       .addCase(fetchPizzas.rejected, (state, action) => {
-        console.log(action, 'rejected');
         state.status = Status.ERROR;
         state.items = [];
       });
