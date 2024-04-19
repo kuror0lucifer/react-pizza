@@ -1,9 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { clearItems, selectCart } from "../redux/slices/cartSlice";
-import CartItem from "../components/CartItem";
-import CartEmpty from "../components/CartEmpty";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import CartItem from '../components/CartItem';
+import CartEmpty from '../components/CartEmpty';
+import { selectCart } from '../redux/cart/selectors';
+import { clearItems } from '../redux/cart/slice';
 
 const Cart: React.FC = () => {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const Cart: React.FC = () => {
   );
 
   const onClickBin = () => {
-    if (window.confirm("Вы действительно хотите очистить корзину?")) {
+    if (window.confirm('Вы действительно хотите очистить корзину?')) {
       dispatch(clearItems());
     }
   };
