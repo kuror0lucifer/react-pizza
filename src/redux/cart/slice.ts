@@ -28,6 +28,7 @@ const cartSlice = createSlice({
 
       if (findItem) {
         findItem.count--;
+        state.totalPrice -= findItem.price;
       }
 
       if (findItem.count < 1) {
