@@ -19,6 +19,7 @@ export default function Search() {
     inputRef.current?.focus();
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const updateSearchValue = React.useCallback(
     debounce((str: string) => {
       dispatch(setSearchValue(str));

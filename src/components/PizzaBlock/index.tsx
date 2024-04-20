@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { selectPizzaData } from '../../redux/pizza/selectors';
 import { selectCartItemById } from '../../redux/cart/selectors';
 import { addItem } from '../../redux/cart/slice';
 import { CartItem } from '../../redux/cart/types';
@@ -29,8 +28,6 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
   const cartItem = useSelector(selectCartItemById(id));
   const [activeSize, setActiveSize] = React.useState(0);
   const [activeType, setActiveType] = React.useState(0);
-
-  const { items } = useSelector(selectPizzaData);
 
   const addedCount = cartItem ? cartItem.count : 0;
 
