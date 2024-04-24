@@ -1,12 +1,12 @@
-# react-pizza
+# :pizza: react-pizza :pizza:
 
 Welcome! The project implements search, pagination, filtering, sorting, backend queries.
 
-Demo: [Click Me](https://reactpizzakuror0lucifer.netlify.app)
+Demo: <a href="https://reactpizzakuror0lucifer.netlify.app" target="_blank">Click Me</a>
 
 ---
 
-:hammer_and_wrench: Technologies
+## :hammer_and_wrench: Technologies
 
 - **ReactJS 18**
 - **TypeScript**
